@@ -7,7 +7,7 @@ name = "bnm"
 version = "0.1.0"
 description = "Fetch USCG Local and Broadcast Notices to Mariners and publish them as a web map"
 readme = "README.md"
-requires-python = ">=3.9"
+requires-python = ">=3.10"
 dependencies = [
     "requests>=2.20",
     "tomli>=1.1; python_version < '3.11'",
