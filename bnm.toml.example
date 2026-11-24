@@ -1,0 +1,19 @@
+# Copy to bnm.toml and adjust. Every key is optional.
+out = "/var/www/html/bnm"            # web directory the map is served from
+cache_dir = "~/.cache/bnm"           # last good copy of every download
+sources = ["lnm", "bnm"]             # "bnm" needs the mailbox settings below
+districts = [1, 5, 7, 8, 9, 11, 13, 14, 17]
+request_delay = 0.5                  # seconds between requests to NAVCEN
+# rsync = "user@webhost:/var/www/html/bnm/"   # if the web server is another machine
+# archive = "/var/lib/bnm/archive.sqlite"     # keep a history of every notice seen
+
+# --- Broadcast Notices: mailbox subscribed to NAVCEN's GovDelivery BNM emails ---
+# Use IMAP ...
+imap_host = "imap.example.edu"
+imap_user = "bnm-feed@example.edu"
+imap_password_file = "/opt/bnm/imap-password"   # chmod 600; or set env BNM_IMAP_PASSWORD
+imap_folder = "INBOX"
+# ... or a local Maildir/mbox the mail is delivered to (instead of IMAP)
+# mail_path = "/home/bnm/Maildir"
+mail_from = "govdelivery"            # ignore mail not from this sender
+bnm_max_age_days = 30                # BNMs with no CANCEL time expire after this

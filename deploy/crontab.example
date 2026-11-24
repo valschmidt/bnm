@@ -1,0 +1,4 @@
+# Refresh the Notices to Mariners map every 2 hours (at :17 to avoid the top of the hour).
+# Install with: crontab -e   (as the user that owns the web directory)
+MAILTO=""
+17 */2 * * * /opt/bnm/venv/bin/bnm-fetch -c /opt/bnm/bnm.toml >> /var/log/bnm/bnm-fetch.log 2>&1

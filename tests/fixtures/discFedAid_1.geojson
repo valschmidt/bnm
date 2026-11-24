@@ -1,0 +1,119 @@
+{
+ "type": "FeatureCollection",
+ "features": [
+  {
+   "type": "Feature",
+   "id": 89488,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -135.34072999999995,
+     57.03897000000006
+    ]
+   },
+   "properties": {
+    "ESRI_OID": 89488,
+    "LNM_UID": 100118371667,
+    "ATON_GROUP": "DISCREPANCIES - FEDERAL AIDS",
+    "LLNR": 24957,
+    "NAME": "Mitchell Rock Daybeacon",
+    "DISCREP_CORR_STATUS": "Correction Status Unreported",
+    "DISCREP_STATUS": "STRUCT DEST",
+    "ATU": 17,
+    "AID_NUMBER": 200100141335,
+    "MSI_STATUS": null,
+    "ATON_UID": 100118371667,
+    "WTRW_UID": 100116385346,
+    "WATERWAY_NAME": "Eastern Channel",
+    "MRN": "urn:mrn:iala:wwy:us:navXII:dis17:secsoualaexcecozon:secsoualatersea:secsoualasublanact:sitsou:eascha",
+    "AID_TYPE": "FD",
+    "AID_SUBTYPE": "FX",
+    "COLOR": "RW",
+    "DESCRIPTION_TYPE": "DBN",
+    "CREATE_DATE": 1485191908000,
+    "BNM_NUM": "J019-17",
+    "ASSIGNED_LONGITUDE": "135-20-26.635W",
+    "ASSIGNED_LATITUDE": "57-02-20.303N",
+    "DECIMAL_LONGITUDE": -135.34073,
+    "DECIMAL_LATITUDE": 57.03897
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 90401,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -94.03812999999997,
+     35.45610000000005
+    ]
+   },
+   "properties": {
+    "ESRI_OID": 90401,
+    "LNM_UID": 100118378260,
+    "ATON_GROUP": "DISCREPANCIES - FEDERAL AIDS",
+    "LLNR": 1455,
+    "NAME": "Mulberry River Daybeacon",
+    "DISCREP_CORR_STATUS": "Correction Status Unreported",
+    "DISCREP_STATUS": "STRUCT DEST",
+    "ATU": 2,
+    "AID_NUMBER": 200100595143,
+    "MSI_STATUS": null,
+    "ATON_UID": 100118378260,
+    "WTRW_UID": 100116381231,
+    "WATERWAY_NAME": "Arkansas River",
+    "MRN": "urn:mrn:iala:wwy:us:navIV:dis8:secneworlexcecozon:secneworltersea:secneworlsublanact:soupas:heaofpastoneworl:neworlhar:neworltobatrou:lowmisriv:whiriv:arkposcan:arkriv",
+    "AID_TYPE": "FD",
+    "AID_SUBTYPE": "FX",
+    "COLOR": null,
+    "DESCRIPTION_TYPE": "DBN",
+    "CREATE_DATE": 1489403202000,
+    "BNM_NUM": "0041UM",
+    "ASSIGNED_LONGITUDE": "094-02-17.272W",
+    "ASSIGNED_LATITUDE": "35-27-21.964N",
+    "DECIMAL_LONGITUDE": -94.03813,
+    "DECIMAL_LATITUDE": 35.4561
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 90595,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -93.09842999999995,
+     35.17123000000004
+    ]
+   },
+   "properties": {
+    "ESRI_OID": 90595,
+    "LNM_UID": 100118379433,
+    "ATON_GROUP": "DISCREPANCIES - FEDERAL AIDS",
+    "LLNR": 1708,
+    "NAME": "Non Lateral Mark 197.9",
+    "DISCREP_CORR_STATUS": "Correction Status Unreported",
+    "DISCREP_STATUS": "STRUCT DEST",
+    "ATU": 2,
+    "AID_NUMBER": 200100691088,
+    "MSI_STATUS": null,
+    "ATON_UID": 100118379433,
+    "WTRW_UID": 100116381231,
+    "WATERWAY_NAME": "Arkansas River",
+    "MRN": "urn:mrn:iala:wwy:us:navIV:dis8:secneworlexcecozon:secneworltersea:secneworlsublanact:soupas:heaofpastoneworl:neworlhar:neworltobatrou:lowmisriv:whiriv:arkposcan:arkriv",
+    "AID_TYPE": "FD",
+    "AID_SUBTYPE": "FX",
+    "COLOR": null,
+    "DESCRIPTION_TYPE": "DBN",
+    "CREATE_DATE": 1490192784000,
+    "BNM_NUM": "0052LM",
+    "ASSIGNED_LONGITUDE": "093-05-54.330W",
+    "ASSIGNED_LATITUDE": "35-10-16.420N",
+    "DECIMAL_LONGITUDE": -93.09843,
+    "DECIMAL_LATITUDE": 35.17123
+   }
+  }
+ ],
+ "properties": {
+  "exceededTransferLimit": true
+ }
+}

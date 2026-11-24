@@ -1,0 +1,116 @@
+{
+ "type": "FeatureCollection",
+ "features": [
+  {
+   "type": "Feature",
+   "id": 24565,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -74.15140999999994,
+     39.79188000000005
+    ]
+   },
+   "properties": {
+    "LNM_UID": 100119537149,
+    "AID_NUMBER": 200100293540,
+    "ATON_UID": 100119537149,
+    "WTRW_UID": 100116382917,
+    "ESRI_OID": 24565,
+    "ATON_GROUP": "TEMPORARY CHANGES - AIDS",
+    "LLNR": 1090,
+    "NAME": "Oyster Creek Channel Buoy 38",
+    "TC_STATUS": "DISCONTINUED FOR DREDGING",
+    "TC_CORR_STATUS": "Correction Status Unreported",
+    "ATU": 5,
+    "MSI_STATUS": "Approved",
+    "WATERWAY_NAME": "Oyster Creek Channel",
+    "MRN": "urn:mrn:iala:wwy:us:navIV:dis5:secdelbayexcecozon:secdelbaytersea:secdelbaysublanact:capmayinl:newjerintwat:oyscrecha",
+    "AID_TYPE": "FD",
+    "AID_SUBTYPE": "FL",
+    "COLOR": "R",
+    "DESCRIPTION_TYPE": "ULB",
+    "CREATE_DATE": 1764788036000,
+    "BNM_NUM": null,
+    "ASSIGNED_LONGITUDE": "074-09-05.081W",
+    "ASSIGNED_LATITUDE": "39-47-30.772N",
+    "DECIMAL_LONGITUDE": -74.15141,
+    "DECIMAL_LATITUDE": 39.79188
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 24588,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -85.01212999999996,
+     29.696090000000027
+    ]
+   },
+   "properties": {
+    "LNM_UID": 100119537338,
+    "AID_NUMBER": 200100748041,
+    "ATON_UID": 100119537338,
+    "WTRW_UID": 100116384582,
+    "ESRI_OID": 24588,
+    "ATON_GROUP": "TEMPORARY CHANGES - AIDS",
+    "LLNR": 2860,
+    "NAME": "Two Mile Channel Buoy 2",
+    "TC_STATUS": "DISCONTINUED",
+    "TC_CORR_STATUS": "Correction Status Unreported",
+    "ATU": 8,
+    "MSI_STATUS": "Approved",
+    "WATERWAY_NAME": "Two Mile Channel",
+    "MRN": "urn:mrn:iala:wwy:us:navIV:dis8:secmobexcecozon:secmobtersea:secmobsublanact:stgeosou:twomilcha",
+    "AID_TYPE": "FD",
+    "AID_SUBTYPE": "FL",
+    "COLOR": "R",
+    "DESCRIPTION_TYPE": "ULB",
+    "CREATE_DATE": 1764936064000,
+    "BNM_NUM": null,
+    "ASSIGNED_LONGITUDE": "085-00-43.664W",
+    "ASSIGNED_LATITUDE": "29-41-45.912N",
+    "DECIMAL_LONGITUDE": -85.01213,
+    "DECIMAL_LATITUDE": 29.696089999999998
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 24589,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -85.01278999999994,
+     29.70061000000004
+    ]
+   },
+   "properties": {
+    "LNM_UID": 100119537339,
+    "AID_NUMBER": 200100497889,
+    "ATON_UID": 100119537339,
+    "WTRW_UID": 100116384582,
+    "ESRI_OID": 24589,
+    "ATON_GROUP": "TEMPORARY CHANGES - AIDS",
+    "LLNR": 2865,
+    "NAME": "Two Mile Channel Buoy 3",
+    "TC_STATUS": "DISCONTINUED",
+    "TC_CORR_STATUS": "Correction Status Unreported",
+    "ATU": 8,
+    "MSI_STATUS": "Approved",
+    "WATERWAY_NAME": "Two Mile Channel",
+    "MRN": "urn:mrn:iala:wwy:us:navIV:dis8:secmobexcecozon:secmobtersea:secmobsublanact:stgeosou:twomilcha",
+    "AID_TYPE": "FD",
+    "AID_SUBTYPE": "FL",
+    "COLOR": "G",
+    "DESCRIPTION_TYPE": "ULB",
+    "CREATE_DATE": 1764936102000,
+    "BNM_NUM": null,
+    "ASSIGNED_LONGITUDE": "085-00-46.034W",
+    "ASSIGNED_LATITUDE": "29-42-02.208N",
+    "DECIMAL_LONGITUDE": -85.01279,
+    "DECIMAL_LATITUDE": 29.700609999999998
+   }
+  }
+ ]
+}

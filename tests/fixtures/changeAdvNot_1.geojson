@@ -1,0 +1,122 @@
+{
+ "type": "FeatureCollection",
+ "features": [
+  {
+   "type": "Feature",
+   "id": 763,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -79.19166999999999,
+     33.231670000000065
+    ]
+   },
+   "properties": {
+    "ESRI_OID": 763,
+    "MSI_UID": 763,
+    "ATU": 7,
+    "TITLE": "Sector Charleston, Submerged Land Act (SLA) - Winyah Bay Channel/ATON/Advanced Notice of Change",
+    "STATUS": "Advanced Notice",
+    "MSI_GROUP": "ATON",
+    "SUB_CATEGORY": "Advanced Notice of Change",
+    "TYPE": null,
+    "WTRW_UID": 100116384345,
+    "MRN": "urn:mrn:iala:wwy:us:navIV:dis7:secchaexcecozon:secchatersea:secchasublanact:winbaycha",
+    "WATERWAY_NAME": "Winyah Bay Channel",
+    "CREATE_DATE": 1727364820000,
+    "MODIFIED_DATE": 1794926881000,
+    "BEGIN_DATE": 1727308800000,
+    "END_DATE": 3292099199000,
+    "DESCRIPTION": "The Coast Guard Mooring Buoy WB (LLNR 1958) will be permanently relocated to approximate position 33-14-59.160N/079-12-47.580W. The new location will provide a more protected environment from the previous exposed location for CG assets when moored to this buoy.",
+    "COORDINATES_JSON": "{\"type\":\"Point\",\"coordinates\":[-79.19167,33.23167]}",
+    "COORDINATES_TYPE": "Point",
+    "DECIMAL_LONGITUDE": -79.19167,
+    "DECIMAL_LATITUDE": 33.23167,
+    "AID_UID": 100117421890,
+    "AID_NAME": "Coast Guard Mooring Buoy WB",
+    "AID_TYPE": "FD",
+    "PRIMARY_LIGHT_LIST_NUMBER": 1958,
+    "COLOR": "W",
+    "DESCRIPTION_TYPE": "ULB"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 765,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -79.12032999999997,
+     33.193670000000054
+    ]
+   },
+   "properties": {
+    "ESRI_OID": 765,
+    "MSI_UID": 765,
+    "ATU": 7,
+    "TITLE": "Sector Charleston, Submerged Land Act (SLA) - Winyah Bay Channel/ATON/Advanced Notice of Change",
+    "STATUS": "Advanced Notice",
+    "MSI_GROUP": "ATON",
+    "SUB_CATEGORY": "Advanced Notice of Change",
+    "TYPE": null,
+    "WTRW_UID": 100116384345,
+    "MRN": "urn:mrn:iala:wwy:us:navIV:dis7:secchaexcecozon:secchatersea:secchasublanact:winbaycha",
+    "WATERWAY_NAME": "Winyah Bay Channel",
+    "CREATE_DATE": 1727365642000,
+    "MODIFIED_DATE": 1794926862000,
+    "BEGIN_DATE": 1727308800000,
+    "END_DATE": 3292099199000,
+    "DESCRIPTION": "Winyah Bay Channel LB 4 (LLNR 1885) will have the bell permanently removed.",
+    "COORDINATES_JSON": "{\"type\":\"Point\",\"coordinates\":[-79.12033,33.19367]}",
+    "COORDINATES_TYPE": "Point",
+    "DECIMAL_LONGITUDE": -79.12033,
+    "DECIMAL_LATITUDE": 33.19367,
+    "AID_UID": 200100023518,
+    "AID_NAME": "Winyah Bay Channel Lighted Bell Buoy 4",
+    "AID_TYPE": "FD",
+    "PRIMARY_LIGHT_LIST_NUMBER": 1885,
+    "COLOR": "R",
+    "DESCRIPTION_TYPE": "LB"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 766,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -79.81024999999994,
+     32.724140000000034
+    ]
+   },
+   "properties": {
+    "ESRI_OID": 766,
+    "MSI_UID": 766,
+    "ATU": 7,
+    "TITLE": "Sector Charleston, Submerged Land Act (SLA) - Charleston Harbor/ATON/Advanced Notice of Change",
+    "STATUS": "Advanced Notice",
+    "MSI_GROUP": "ATON",
+    "SUB_CATEGORY": "Advanced Notice of Change",
+    "TYPE": null,
+    "WTRW_UID": 100116384333,
+    "MRN": "urn:mrn:iala:wwy:us:navIV:dis7:secchaexcecozon:secchatersea:secchasublanact:chahar",
+    "WATERWAY_NAME": "Charleston Harbor",
+    "CREATE_DATE": 1727365804000,
+    "MODIFIED_DATE": 1794926844000,
+    "BEGIN_DATE": 1727308800000,
+    "END_DATE": 3292099199000,
+    "DESCRIPTION": "Charleston Harbor Channel LB 18 (LLNR 2420) will have the bell permanently removed.",
+    "COORDINATES_JSON": "{\"type\":\"Point\",\"coordinates\":[-79.81025,32.72414]}",
+    "COORDINATES_TYPE": "Point",
+    "DECIMAL_LONGITUDE": -79.81025,
+    "DECIMAL_LATITUDE": 32.72414,
+    "AID_UID": 200100023415,
+    "AID_NAME": "Charleston Harbor Channel Lighted Bell Buoy 18",
+    "AID_TYPE": "FD",
+    "PRIMARY_LIGHT_LIST_NUMBER": 2420,
+    "COLOR": "R",
+    "DESCRIPTION_TYPE": "LB"
+   }
+  }
+ ]
+}

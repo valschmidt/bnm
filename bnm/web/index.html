@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Notices to Mariners Map</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/MarkerCluster.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/MarkerCluster.Default.min.css">
+<style>
+  :root {
+    --bg: #ffffff; --fg: #1d2430; --muted: #5b6575; --line: #d9dee6; --accent: #0b5cad;
+    --panel-w: 320px;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; font: 14px/1.4 system-ui, -apple-system, "Segoe UI", sans-serif; color: var(--fg); background: var(--bg); }
+  #app { display: flex; height: 100%; }
+  #panel { width: var(--panel-w); flex: none; overflow-y: auto; border-right: 1px solid var(--line); padding: 12px 14px; }
+  #map { flex: 1; }
+  h1 { font-size: 17px; margin: 0 0 4px; }
+  .muted { color: var(--muted); font-size: 12px; }
+  .warn { color: #a33; font-size: 12px; }
+  fieldset { border: 0; border-top: 1px solid var(--line); margin: 12px 0 0; padding: 10px 0 0; }
+  legend { font-weight: 600; padding: 0 4px 0 0; }
+  label.cb { display: flex; align-items: center; gap: 6px; padding: 1px 0; cursor: pointer; }
+  label.cb .n { margin-left: auto; color: var(--muted); font-size: 12px; }
+  .sw { width: 11px; height: 11px; border-radius: 2px; flex: none; border: 1px solid rgba(0,0,0,.25); }
+  input[type=search], input[type=date], select { width: 100%; padding: 5px 6px; border: 1px solid var(--line); border-radius: 4px; font: inherit; }
+  .row { display: flex; gap: 6px; margin-top: 6px; }
+  button { font: inherit; padding: 3px 8px; border: 1px solid var(--line); background: #f5f7fa; border-radius: 4px; cursor: pointer; }
+  #count { font-weight: 600; }
+  .popup h3 { font-size: 14px; margin: 0 0 4px; }
+  .popup .meta { color: var(--muted); font-size: 12px; margin-bottom: 6px; }
+  .popup pre { white-space: pre-wrap; font: 12.5px/1.4 system-ui, sans-serif; margin: 0; max-height: 260px; overflow-y: auto; }
+  .leaflet-popup-content { width: 340px !important; max-width: 70vw; }
+  #toggle { display: none; }
+  .disclaimer { margin-top: 14px; font-size: 11px; color: var(--muted); }
+  @media (max-width: 700px) {
+    #app { flex-direction: column; }
+    #panel { width: 100%; max-height: 45%; border-right: 0; border-bottom: 1px solid var(--line); padding: 10px 16px; }
+    #panel.collapsed > :not(header) { display: none; }
+    #toggle { display: inline-block; float: right; }
+  }
+</style>
+</head>
+<body>
+<div id="app">
+  <aside id="panel">
+    <header>
+      <button id="toggle" type="button">Filters</button>
+      <h1>USCG Notices to Mariners</h1>
+      <div class="muted">Showing <span id="count">0</span> notices · <span id="updated">loading…</span></div>
+      <div id="errors" class="warn"></div>
+    </header>
+    <fieldset>
+      <legend>Search</legend>
+      <input id="q" type="search" placeholder="Text, waterway, LLNR, BNM #">
+    </fieldset>
+    <fieldset>
+      <legend>District</legend>
+      <select id="district"><option value="">All districts</option></select>
+    </fieldset>
+    <fieldset>
+      <legend>Active on</legend>
+      <input id="date" type="date">
+      <div class="muted">Leave blank to show all current notices.</div>
+    </fieldset>
+    <fieldset>
+      <legend>Source</legend>
+      <div id="sources"></div>
+    </fieldset>
+    <fieldset>
+      <legend>Category</legend>
+      <div class="row"><button type="button" id="all">All</button><button type="button" id="none">None</button></div>
+      <div id="cats"></div>
+    </fieldset>
+    <fieldset id="unmapped-box" hidden>
+      <legend>Broadcast notices without a position</legend>
+      <ul id="unmapped" class="muted" style="margin:0;padding-left:18px"></ul>
+    </fieldset>
+    <p class="disclaimer">Not for navigation. Data from the U.S. Coast Guard Navigation Center
+      (<a href="https://www.navcen.uscg.gov/msi" target="_blank" rel="noopener">navcen.uscg.gov</a>); always consult official
+      Notices to Mariners. Downloads: <a href="data/notices.geojson">GeoJSON</a> · <a href="data/notices.kml">KML</a>.</p>
+  </aside>
+  <div id="map"></div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/leaflet.markercluster.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

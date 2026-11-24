@@ -1,0 +1,122 @@
+{
+ "type": "FeatureCollection",
+ "features": [
+  {
+   "type": "Feature",
+   "id": 58226,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -122.15840999999995,
+     45.58262000000008
+    ]
+   },
+   "properties": {
+    "MSI_GROUP": "ATON",
+    "TITLE": "Columbia River - Fashion Reef/ATON/ATON Changes",
+    "STATUS": "Approved",
+    "SUB_CATEGORY": "ATON Changes",
+    "TYPE": null,
+    "WTRW_UID": 100116385641,
+    "WATERWAY_NAME": "Fashion Reef",
+    "ATU": 13,
+    "CREATE_DATE": 1794441584000,
+    "MODIFIED_DATE": 1794441597000,
+    "BEGIN_DATE": 1794355200000,
+    "END_DATE": 1797033599000,
+    "DESCRIPTION": "Replaced Prindle Dike Lighted Buoy 73 with a steel multi-pile structure, Prindle Dike LT 73, Fl G 6s. Location 45-34' 57.36\"N, 122-09'30.69\"W. ",
+    "COORDINATES_TYPE": "Point",
+    "COORDINATES_JSON": "{\"type\":\"Point\",\"coordinates\":[-122.15841,45.58262]}",
+    "AID_UID": 100119388899,
+    "PRIMARY_LIGHT_LIST_NUMBER": 11646,
+    "COLOR": "G",
+    "DESCRIPTION_TYPE": "LT",
+    "MSI_UID": 58226,
+    "MRN": "urn:mrn:iala:wwy:us:navXII:dis13:seccolrivexcecozon:seccolrivtersea:seccolrivsublanact:colriv:fasree",
+    "DECIMAL_LONGITUDE": -122.15841,
+    "DECIMAL_LATITUDE": 45.58262,
+    "ESRI_OID": 58226,
+    "AID_NAME": "Prindle Dike LT 73",
+    "AID_TYPE": "FD"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 58227,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -76.67353999999995,
+     34.73306000000008
+    ]
+   },
+   "properties": {
+    "MSI_GROUP": "ATON",
+    "TITLE": "Chimney Island Slough - Russell Slough/ATON/ATON Changes",
+    "STATUS": "Approved",
+    "SUB_CATEGORY": "ATON Changes",
+    "TYPE": null,
+    "WTRW_UID": 100116382975,
+    "WATERWAY_NAME": "Russell Slough",
+    "ATU": 5,
+    "CREATE_DATE": 1794489876000,
+    "MODIFIED_DATE": 1794489902000,
+    "BEGIN_DATE": 1794441600000,
+    "END_DATE": 1795737599000,
+    "DESCRIPTION": "ATON/ATON Changes\n\nFrom: 2026-11-12 To: 2026-11-26\n\nLocation:\n34-43-59.016N/076-40-24.744W\n\nAid Name: Russell Slough Buoy 9\nLLNR: 38475\n\nAction: ESTABLISH in approximate position: 34-43-59.016N, 076-40-24.744W, green can.\n",
+    "COORDINATES_TYPE": "Point",
+    "COORDINATES_JSON": "{\"type\":\"Point\",\"coordinates\":[-76.67354,34.73306]}",
+    "AID_UID": 100119603117,
+    "PRIMARY_LIGHT_LIST_NUMBER": 38475,
+    "COLOR": "G",
+    "DESCRIPTION_TYPE": "ULB",
+    "MSI_UID": 58227,
+    "MRN": "urn:mrn:iala:wwy:us:navIV:dis5:secnorcarexcecozon:secnorcartersea:secnorcarsublanact:beainl:morcitcha:chiislslo:russlo",
+    "DECIMAL_LONGITUDE": -76.67354,
+    "DECIMAL_LATITUDE": 34.73306,
+    "ESRI_OID": 58227,
+    "AID_NAME": "Russell Slough Buoy 9",
+    "AID_TYPE": "FD"
+   }
+  },
+  {
+   "type": "Feature",
+   "id": 58293,
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     -76.24150999999995,
+     38.97897000000006
+    ]
+   },
+   "properties": {
+    "MSI_GROUP": "ATON",
+    "TITLE": "Chester River - Kent Island Narrows North Approach/ATON/ATON Changes",
+    "STATUS": "Approved",
+    "SUB_CATEGORY": "ATON Changes",
+    "TYPE": null,
+    "WTRW_UID": 100116382521,
+    "WATERWAY_NAME": "Kent Island Narrows North Approach",
+    "ATU": 5,
+    "CREATE_DATE": 1794500089000,
+    "MODIFIED_DATE": 1794500182000,
+    "BEGIN_DATE": 1794441600000,
+    "END_DATE": 1795737599000,
+    "DESCRIPTION": "ATON/ATON Changes\n\nFrom: 2026-11-12 To: 2026-11-26\n\nLocation:\n38-58-44.298N/076-14-29.420W\n\nAid Name: Kent Island Narrows North Approach Daybeacon 9\nLLNR: 26445\n\nAction: RELOCATE\n",
+    "COORDINATES_TYPE": "Point",
+    "COORDINATES_JSON": "{\"type\":\"Point\",\"coordinates\":[-76.24151,38.97897]}",
+    "AID_UID": 200100752692,
+    "PRIMARY_LIGHT_LIST_NUMBER": 26445,
+    "COLOR": "G",
+    "DESCRIPTION_TYPE": "DBN",
+    "MSI_UID": 58293,
+    "MRN": "urn:mrn:iala:wwy:us:navIV:dis5:secvirexcecozon:secvirtersea:secvirsublanact:checha:uppchecha:cheriv:kenislnarnorapp",
+    "DECIMAL_LONGITUDE": -76.24150999999999,
+    "DECIMAL_LATITUDE": 38.97897,
+    "ESRI_OID": 58293,
+    "AID_NAME": "Kent Island Narrows North Approach Daybeacon 9",
+    "AID_TYPE": "FD"
+   }
+  }
+ ]
+}

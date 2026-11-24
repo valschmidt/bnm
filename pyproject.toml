@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "bnm"
+version = "0.1.0"
+description = "Fetch USCG Local and Broadcast Notices to Mariners and publish them as a web map"
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = [
+    "requests>=2.20",
+    "tomli>=1.1; python_version < '3.11'",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=7"]
+
+[project.scripts]
+bnm-fetch = "bnm.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["bnm*"]
+
+[tool.setuptools.package-data]
+bnm = ["web/*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

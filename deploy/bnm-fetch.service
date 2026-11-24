@@ -1,0 +1,10 @@
+[Unit]
+Description=Fetch USCG Notices to Mariners and rebuild the map
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=oneshot
+User=bnm
+ExecStart=/opt/bnm/venv/bin/bnm-fetch -c /opt/bnm/bnm.toml
+Nice=10
