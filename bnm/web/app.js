@@ -20,9 +20,19 @@
 
   // ------------------------------------------------------------------ map
   const map = L.map("map", { preferCanvas: true, worldCopyJump: true });
-  const saved = store.get("view");
+  // View comes from the URL (#zoom/lat/lon, shareable), else the last visit, else CONUS
+  const fromHash = () => {
+    const m = location.hash.match(/^#(\d+(?:\.\d+)?)\/(-?\d+(?:\.\d+)?)\/(-?\d+(?:\.\d+)?)/);
+    return m && { z: +m[1], c: [+m[2], +m[3]] };
+  };
+  const saved = fromHash() || store.get("view");
   if (saved) map.setView(saved.c, saved.z); else map.setView([38, -95], 4);
-  map.on("moveend", () => store.set("view", { c: map.getCenter(), z: map.getZoom() }));
+  map.on("moveend", () => {
+    const c = map.getCenter(), z = map.getZoom();
+    store.set("view", { c, z });
+    history.replaceState(null, "", `#${z}/${c.lat.toFixed(4)}/${c.lng.toFixed(4)}`);
+  });
+  window.addEventListener("hashchange", () => { const v = fromHash(); if (v) map.setView(v.c, v.z); });
 
   const osm = L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
     maxZoom: 19, attribution: "&copy; OpenStreetMap contributors",
@@ -89,8 +99,13 @@
         pts.push(L.circleMarker([y, x], { radius: 6, color: "#222", weight: 1, fillColor: color, fillOpacity: 0.9 })
           .bindPopup(() => popupHtml(p), { maxWidth: 360 }));
       } else {
+        // Region-sized areas (e.g. district-wide MSIBs) get a faint fill so they don't hide the map
+        if (f._big === undefined) {
+          const b = L.geoJSON(f).getBounds();
+          f._big = b.isValid() && (b.getNorth() - b.getSouth()) * (b.getEast() - b.getWest()) > 25;
+        }
         L.geoJSON(f, {
-          style: { color, weight: 2, fillOpacity: 0.15 },
+          style: { color, weight: f._big ? 1.5 : 2, fillOpacity: f._big ? 0.03 : 0.15, dashArray: f._big ? "6 4" : null },
           pointToLayer: (_, ll) => L.circleMarker(ll, { radius: 5, color, fillOpacity: 0.8 }),
         }).bindPopup(() => popupHtml(p), { maxWidth: 360 }).addTo(shapes);
       }

@@ -2,7 +2,9 @@
 
 Fetches U.S. Coast Guard Local Notices to Mariners (LNM) and puts them on a web map you can pan and zoom. Each notice's full text is shown in a popup on its geometry. It also maps Broadcast Notices to Mariners (BNM) received by email.
 
-**Not for navigation.** Always consult the official Notices to Mariners.
+![Map of Local Notices to Mariners around New York and New Jersey: clustered notice markers, construction routes and safety zones over OpenStreetMap, with category, district and date filters in the side panel](docs/screenshot.png)
+
+> **Disclaimer:** This utility is provided as is, with no warranty of any kind and no guarantee that it is complete, current or free of errors. Notices may be missing, delayed or misplaced. Using it for navigation is entirely at your own risk. Always check the official Coast Guard Notices to Mariners.
 
 ## How it works
 
@@ -17,32 +19,59 @@ cron (every 2 h) → bnm-fetch → <web dir>/index.html, app.js
 - Downloads use conditional GET and are cached in `~/.cache/bnm`. If NAVCEN is down or returns bad data, the last good copy is used and the problem is reported in `manifest.json`. The map shows a warning banner when that happens.
 - Notice data is never committed to git. GitHub holds only the code.
 
-The map is Leaflet, with OpenStreetMap and an optional NOAA ENC chart overlay. You can filter by category, district, source and the date a notice is active, and search the text. `notices.kml` opens in Google Earth or OpenCPN.
+The map is Leaflet, with OpenStreetMap and an optional NOAA ENC chart overlay. You can filter by category, district, source and the date a notice is active, and search the text. The current view is kept in the URL (`#zoom/lat/lon`), so you can share a link to a specific area. `notices.kml` opens in Google Earth or OpenCPN.
 
-## Install on the lab server
+## Server Installation
 
 ```bash
+# Create the install and log directories, owned by the account that will run the fetcher
 sudo mkdir -p /opt/bnm /var/log/bnm && sudo chown $USER /opt/bnm /var/log/bnm
-git clone <repo-url> /opt/bnm/src
+
+# Get the code
+git clone https://github.com/valschmidt/bnm.git /opt/bnm/src
+
+# Create a private Python environment (Python 3.10 or newer) and install bnm-fetch into it
 python3 -m venv /opt/bnm/venv
 /opt/bnm/venv/bin/pip install /opt/bnm/src
-cp /opt/bnm/src/bnm.toml.example /opt/bnm/bnm.toml   # set `out` to the web directory
-/opt/bnm/venv/bin/bnm-fetch -c /opt/bnm/bnm.toml -v   # first run, ~30 s
-crontab -e    # add the line from deploy/crontab.example
+
+# Copy the example config, then edit it: set `out` to the web directory the map is served from
+cp /opt/bnm/src/bnm.toml.example /opt/bnm/bnm.toml
+
+# Run once by hand to check everything works (takes about 30 s)
+/opt/bnm/venv/bin/bnm-fetch -c /opt/bnm/bnm.toml -v
+
+# Schedule it: paste in the line from deploy/crontab.example (runs every 2 hours)
+crontab -e
+```
+
+There are also systemd units in `deploy/` (`bnm-fetch.service` and `bnm-fetch.timer`) if you prefer them to cron. If the web server is a different machine, set `rsync = "user@host:/path/"` in `bnm.toml`.
+
+To update the code:
+
+```bash
+# Pull the latest code and reinstall it into the environment
+git -C /opt/bnm/src pull && /opt/bnm/venv/bin/pip install /opt/bnm/src
 ```
 
 ### BNM mailbox
 
-1. Get a dedicated mailbox, for example `bnm-feed@<lab domain>`.
-2. Go to https://www.navcen.uscg.gov/broadcast-notice-to-mariners, follow "Subscribe to BNM e-mail updates", and subscribe the mailbox to the BNM topics for every district or sector you want.
-3. Put the IMAP settings in `bnm.toml` (see `bnm.toml.example`). Keep the password in a `chmod 600` file named by `imap_password_file`, or in the `BNM_IMAP_PASSWORD` environment variable, never in the TOML file. If mail is delivered locally, set `mail_path` to the Maildir or mbox instead.
+Broadcast Notices to Mariners are read out over marine radio and listed on NAVCEN's search web page, but that page blocks automated access. The only form a program can use is email: NAVCEN sends each BNM to email subscribers through GovDelivery. To put BNMs on the map you therefore need:
+
+- **an email account** for this tool, plus its login credentials, and
+- **a manual subscription**, made by a person, to the BNM email feed for each Coast Guard district or sector you want on the map. There's no bulk or automated sign-up.
+
+Steps:
+
+1. Create a dedicated mailbox, for example `bnm-feed@<lab domain>`, so notices don't mix with anyone's personal mail.
+2. Go to https://www.navcen.uscg.gov/broadcast-notice-to-mariners, follow "Subscribe to BNM e-mail updates", and subscribe the mailbox to the BNM feed for every district or sector you want. Confirm the subscription emails that come back.
+3. Put the mailbox's IMAP server and username in `bnm.toml` (see `bnm.toml.example`), and add `"bnm"` to `sources`. Keep the password in a `chmod 600` file named by `imap_password_file`, or in the `BNM_IMAP_PASSWORD` environment variable, never in the TOML file. If the mail is delivered to the server itself, set `mail_path` to the Maildir or mbox instead.
 4. Check it with `bnm-fetch -c /opt/bnm/bnm.toml --only bnm --dry-run -v`.
+
+The tool only reads the mailbox. Messages are never deleted or marked as read, and only mail from GovDelivery is used.
 
 The parser was written from typical USCG BNM wording, and its tests use synthetic messages. Once real messages arrive, add a few to `tests/` and adjust `bnm/sources/email_bnm.py` if the format differs.
 
-There are also systemd units in `deploy/` (`bnm-fetch.service` and `bnm-fetch.timer`) if you prefer them to cron. If the web server is a different machine, set `rsync = "user@host:/path/"` in `bnm.toml`.
-
-To update the code, run `git -C /opt/bnm/src pull && /opt/bnm/venv/bin/pip install /opt/bnm/src`.
+### Web server
 
 The web server should compress `.geojson` and `.kml` files. The GeoJSON is about 5.5 MB and gzips to about 0.8 MB. For Apache:
 
