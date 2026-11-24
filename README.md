@@ -2,7 +2,7 @@
 
 Fetches U.S. Coast Guard Local Notices to Mariners (LNM) and puts them on a web map you can pan and zoom. Each notice's full text is shown in a popup on its geometry. It also maps Broadcast Notices to Mariners (BNM) received by email.
 
-![Map of Local Notices to Mariners around New York and New Jersey: clustered notice markers, construction routes and safety zones over OpenStreetMap, with category, district and date filters in the side panel](docs/screenshot.png)
+![Map of Local Notices to Mariners in New York Harbor: notice markers, construction routes and safety zones over OpenStreetMap with OpenSeaMap seamarks, with category, district and date filters in the side panel](docs/screenshot.png)
 
 > **Disclaimer:** This utility is provided as is, with no warranty of any kind and no guarantee that it is complete, current or free of errors. Notices may be missing, delayed or misplaced. Using it for navigation is entirely at your own risk. Always check the official Coast Guard Notices to Mariners.
 
@@ -19,7 +19,7 @@ cron (every 2 h) → bnm-fetch → <web dir>/index.html, app.js
 - Downloads use conditional GET and are cached in `~/.cache/bnm`. If NAVCEN is down or returns bad data, the last good copy is used and the problem is reported in `manifest.json`. The map shows a warning banner when that happens.
 - Notice data is never committed to git. GitHub holds only the code.
 
-The map is Leaflet, with OpenStreetMap and an optional NOAA ENC chart overlay. You can filter by category, district, source and the date a notice is active, and search the text. The current view is kept in the URL (`#zoom/lat/lon`), so you can share a link to a specific area. `notices.kml` opens in Google Earth or OpenCPN.
+The map is Leaflet, with OpenStreetMap plus the OpenSeaMap seamark layer (buoys, lights, beacons) as the background, and an optional NOAA ENC chart overlay. You can filter by category, district, source and the date a notice is active, and search the text. The ruler button measures true bearing (degrees) and distance (nautical miles and km) between two clicked points. The current view is kept in the URL (`#zoom/lat/lon`), so you can share a link to a specific area. `notices.kml` opens in Google Earth or OpenCPN.
 
 ## Server Installation
 
@@ -115,3 +115,7 @@ Layout:
 - **BNM: implemented from email, waiting on a mailbox.** The parser has only been tested with synthetic messages. NAVCEN's BNM search scripts and RSS page return HTTP 403 to non-browser clients, which is why the email route is used.
 
 Data source: U.S. Coast Guard Navigation Center, https://www.navcen.uscg.gov/msi
+
+## License
+
+Copyright (c) 2026, Val Schmidt, University of New Hampshire. Released under the BSD 3-Clause License; see [LICENSE](LICENSE).

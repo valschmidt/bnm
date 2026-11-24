@@ -41,8 +41,85 @@
     "https://gis.charttools.noaa.gov/arcgis/rest/services/MCS/NOAAChartDisplay/MapServer/exts/MaritimeChartService/WMSServer",
     { layers: "0,1,2,3,4,5,6,7", format: "image/png", transparent: true, version: "1.3.0",
       maxZoom: 19, attribution: "NOAA ENC&reg;" });
-  L.control.layers({ "OpenStreetMap": osm }, { "NOAA nautical chart (ENC)": enc }, { collapsed: true }).addTo(map);
+  // OpenSeaMap is a transparent seamark layer (buoys, lights, beacons) drawn over the OSM base map
+  const seamarks = L.tileLayer("https://tiles.openseamap.org/seamark/{z}/{x}/{y}.png", {
+    maxZoom: 18, attribution: "&copy; OpenSeaMap contributors",
+  }).addTo(map);
+  L.control.layers({ "OpenStreetMap": osm },
+    { "OpenSeaMap seamarks": seamarks, "NOAA nautical chart (ENC)": enc }, { collapsed: true }).addTo(map);
   L.control.scale({ imperial: true, metric: true }).addTo(map);
+
+  // ------------------------------------------------------------------ measure tool
+  // Click the ruler, then click two points: shows true bearing (initial great-circle course)
+  // and great-circle distance in nautical miles and kilometres. Esc or the ruler turns it off.
+  const R_KM = 6371.0088, KM_PER_NM = 1.852;
+  const rad = (d) => d * Math.PI / 180, deg = (r) => r * 180 / Math.PI;
+  function measureBetween(a, b) {
+    const f1 = rad(a.lat), f2 = rad(b.lat), dl = rad(b.lng - a.lng);
+    const h = Math.sin((f2 - f1) / 2) ** 2 + Math.cos(f1) * Math.cos(f2) * Math.sin(dl / 2) ** 2;
+    const km = 2 * R_KM * Math.asin(Math.min(1, Math.sqrt(h)));
+    const brg = (deg(Math.atan2(Math.sin(dl) * Math.cos(f2),
+      Math.cos(f1) * Math.sin(f2) - Math.sin(f1) * Math.cos(f2) * Math.cos(dl))) + 360) % 360;
+    return { km, nm: km / KM_PER_NM, brg };
+  }
+  const fmtDist = (v) => v.toFixed(v < 10 ? 2 : 1);
+  const measure = { on: false, start: null, line: null, dots: L.layerGroup().addTo(map) };
+  const MeasureControl = L.Control.extend({
+    options: { position: "topleft" },
+    onAdd() {
+      const box = L.DomUtil.create("div", "leaflet-bar measure");
+      box.innerHTML = '<button type="button" title="Measure bearing and distance" aria-label="Measure bearing and distance">&#128207;</button><div class="out"></div>';
+      L.DomEvent.disableClickPropagation(box);
+      measure.btn = box.querySelector("button");
+      measure.out = box.querySelector(".out");
+      measure.btn.addEventListener("click", () => setMeasure(!measure.on));
+      return box;
+    },
+  });
+  new MeasureControl().addTo(map);
+
+  function clearMeasure() {
+    measure.dots.clearLayers();
+    measure.line = null; measure.start = null;
+    measure.out.textContent = "";
+  }
+  function setMeasure(on) {
+    measure.on = on;
+    measure.btn.classList.toggle("on", on);
+    map.getContainer().classList.toggle("measure-on", on);
+    clearMeasure();
+    if (on) { map.closePopup(); measure.out.textContent = "Click the start point"; }
+  }
+  function showMeasure(a, b) {
+    const m = measureBetween(a, b);
+    measure.out.innerHTML = `${m.brg.toFixed(1).padStart(5, "0")}&deg;T<br>` +
+      `${fmtDist(m.nm)} NM &middot; ${fmtDist(m.km)} km`;
+  }
+  map.on("click", (e) => {
+    if (!measure.on) return;
+    if (!measure.start || measure.done) {
+      clearMeasure();
+      measure.done = false;
+      measure.start = e.latlng;
+      L.circleMarker(e.latlng, { radius: 4, color: "#000", fillColor: "#fff", fillOpacity: 1, interactive: false }).addTo(measure.dots);
+      measure.line = L.polyline([e.latlng, e.latlng], { color: "#000", weight: 2, dashArray: "5 5", interactive: false }).addTo(measure.dots);
+      measure.out.textContent = "Click the end point";
+    } else {
+      measure.line.setLatLngs([measure.start, e.latlng]);
+      L.circleMarker(e.latlng, { radius: 4, color: "#000", fillColor: "#fff", fillOpacity: 1, interactive: false }).addTo(measure.dots);
+      showMeasure(measure.start, e.latlng);
+      measure.done = true;
+    }
+  });
+  map.on("mousemove", (e) => {
+    if (measure.on && measure.start && !measure.done) {
+      measure.line.setLatLngs([measure.start, e.latlng]);
+      showMeasure(measure.start, e.latlng);
+    }
+  });
+  // Notice popups stay closed while measuring (clicks on features still reach the map)
+  map.on("popupopen", () => { if (measure.on) map.closePopup(); });
+  document.addEventListener("keydown", (e) => { if (e.key === "Escape" && measure.on) setMeasure(false); });
 
   const clusters = L.markerClusterGroup({ chunkedLoading: true, maxClusterRadius: 45, showCoverageOnHover: false });
   const shapes = L.featureGroup();
