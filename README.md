@@ -1,4 +1,4 @@
-# USCG Notices to Mariners Map
+# Notices to Mariners Viewer
 
 Fetches U.S. Coast Guard Local Notices to Mariners (LNM) and puts them on a web map you can pan and zoom. Each notice's full text is shown in a popup on its geometry. It also maps Broadcast Notices to Mariners (BNM) received by email.
 
